@@ -6,6 +6,7 @@
 package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -34,41 +35,38 @@ import javax.validation.constraints.NotNull;
 public class PublicacionDestacada implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "COD_PUBLICACION_DESTACADA")
     private Integer codPublicacionDestacada;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "NUMERO_LIKES")
-    private long numeroLikes;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "NUMERO_COMENTARIOS")
-    private long numeroComentarios;
+
+    @Column(name = "NUMERO_LIKES", nullable = false, precision = 15, scale = 0)
+    private BigDecimal numeroLikes;
+   
+    @Column(name = "NUMERO_COMENTARIOS", nullable = false, precision = 15, scale = 0)
+    private BigDecimal numeroComentarios;
+    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publicacionDestacada")
     private List<Alarma> alarmaList;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publicacionDestacada")
+    private List<Reporte> reporteList;
+    
     @JoinColumns({
         @JoinColumn(name = "COD_PUBLICACION", referencedColumnName = "COD_PUBLICACION")
         , @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO")
         , @JoinColumn(name = "COD_TIPO_PUBLICACION", referencedColumnName = "COD_TIPO_PUBLICACION")})
     @ManyToOne
     private Publicacion publicacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publicacionDestacada")
-    private List<Reporte> reporteList;
+    
+    
 
     public PublicacionDestacada() {
     }
 
     public PublicacionDestacada(Integer codPublicacionDestacada) {
         this.codPublicacionDestacada = codPublicacionDestacada;
-    }
-
-    public PublicacionDestacada(Integer codPublicacionDestacada, long numeroLikes, long numeroComentarios) {
-        this.codPublicacionDestacada = codPublicacionDestacada;
-        this.numeroLikes = numeroLikes;
-        this.numeroComentarios = numeroComentarios;
     }
 
     public Integer getCodPublicacionDestacada() {
@@ -79,19 +77,19 @@ public class PublicacionDestacada implements Serializable {
         this.codPublicacionDestacada = codPublicacionDestacada;
     }
 
-    public long getNumeroLikes() {
+    public BigDecimal getNumeroLikes() {
         return numeroLikes;
     }
 
-    public void setNumeroLikes(long numeroLikes) {
+    public void setNumeroLikes(BigDecimal numeroLikes) {
         this.numeroLikes = numeroLikes;
     }
 
-    public long getNumeroComentarios() {
+    public BigDecimal getNumeroComentarios() {
         return numeroComentarios;
     }
 
-    public void setNumeroComentarios(long numeroComentarios) {
+    public void setNumeroComentarios(BigDecimal numeroComentarios) {
         this.numeroComentarios = numeroComentarios;
     }
 

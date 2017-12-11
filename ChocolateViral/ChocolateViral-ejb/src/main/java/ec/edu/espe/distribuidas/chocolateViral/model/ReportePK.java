@@ -6,6 +6,7 @@
 package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -18,18 +19,18 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class ReportePK implements Serializable {
 
-    @Basic(optional = false)
-    @Column(name = "COD_REPORTE")
-    private int codReporte;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "COD_PUBLICACION_DESTACADA")
-    private int codPublicacionDestacada;
+    //@Basic(optional = false)
+    @Column(name = "COD_REPORTE", nullable = false)
+    private Integer codReporte;
+    //@Basic(optional = false)
+    //@NotNull
+    @Column(name = "COD_PUBLICACION_DESTACADA", nullable = false)
+    private Integer codPublicacionDestacada;
 
     public ReportePK() {
     }
 
-    public ReportePK(int codReporte, int codPublicacionDestacada) {
+    public ReportePK(Integer codReporte, Integer codPublicacionDestacada) {
         this.codReporte = codReporte;
         this.codPublicacionDestacada = codPublicacionDestacada;
     }
@@ -38,37 +39,42 @@ public class ReportePK implements Serializable {
         return codReporte;
     }
 
-    public void setCodReporte(int codReporte) {
+    public void setCodReporte(Integer codReporte) {
         this.codReporte = codReporte;
     }
 
-    public int getCodPublicacionDestacada() {
+    public Integer getCodPublicacionDestacada() {
         return codPublicacionDestacada;
     }
 
-    public void setCodPublicacionDestacada(int codPublicacionDestacada) {
+    public void setCodPublicacionDestacada(Integer codPublicacionDestacada) {
         this.codPublicacionDestacada = codPublicacionDestacada;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (int) codReporte;
-        hash += (int) codPublicacionDestacada;
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.codReporte);
+        hash = 73 * hash + Objects.hashCode(this.codPublicacionDestacada);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ReportePK)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        ReportePK other = (ReportePK) object;
-        if (this.codReporte != other.codReporte) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        if (this.codPublicacionDestacada != other.codPublicacionDestacada) {
+        final ReportePK other = (ReportePK) obj;
+        if (!Objects.equals(this.codReporte, other.codReporte)) {
+            return false;
+        }
+        if (!Objects.equals(this.codPublicacionDestacada, other.codPublicacionDestacada)) {
             return false;
         }
         return true;
@@ -76,7 +82,7 @@ public class ReportePK implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.distribuidas.chocolateViral.model.ReportePK[ codReporte=" + codReporte + ", codPublicacionDestacada=" + codPublicacionDestacada + " ]";
+        return "ReportePK{" + "codReporte=" + codReporte + ", codPublicacionDestacada=" + codPublicacionDestacada + '}';
     }
-    
+  
 }

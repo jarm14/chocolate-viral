@@ -6,6 +6,7 @@
 package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -28,14 +29,17 @@ import javax.validation.constraints.NotNull;
 public class UsuarioDestacado implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @EmbeddedId
     protected UsuarioDestacadoPK usuarioDestacadoPK;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "NUMERO_SEGUIDORES")
-    private long numeroSeguidores;
-    @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    
+    //@Basic(optional = false)
+    //@NotNull
+    @Column(name = "NUMERO_SEGUIDORES", nullable = false, precision = 10, scale = 0)
+    private BigDecimal numeroSeguidores;
+    
+    @ManyToOne
+    @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO", insertable = false, updatable = false) 
     private Usuario usuario;
 
     public UsuarioDestacado() {
@@ -43,15 +47,6 @@ public class UsuarioDestacado implements Serializable {
 
     public UsuarioDestacado(UsuarioDestacadoPK usuarioDestacadoPK) {
         this.usuarioDestacadoPK = usuarioDestacadoPK;
-    }
-
-    public UsuarioDestacado(UsuarioDestacadoPK usuarioDestacadoPK, long numeroSeguidores) {
-        this.usuarioDestacadoPK = usuarioDestacadoPK;
-        this.numeroSeguidores = numeroSeguidores;
-    }
-
-    public UsuarioDestacado(int codUsuarioDestacado, int codUsuario) {
-        this.usuarioDestacadoPK = new UsuarioDestacadoPK(codUsuarioDestacado, codUsuario);
     }
 
     public UsuarioDestacadoPK getUsuarioDestacadoPK() {
@@ -62,11 +57,11 @@ public class UsuarioDestacado implements Serializable {
         this.usuarioDestacadoPK = usuarioDestacadoPK;
     }
 
-    public long getNumeroSeguidores() {
+    public BigDecimal getNumeroSeguidores() {
         return numeroSeguidores;
     }
 
-    public void setNumeroSeguidores(long numeroSeguidores) {
+    public void setNumeroSeguidores(BigDecimal numeroSeguidores) {
         this.numeroSeguidores = numeroSeguidores;
     }
 

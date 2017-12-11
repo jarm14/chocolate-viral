@@ -32,18 +32,22 @@ import javax.validation.constraints.Size;
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Basic(optional = false)
     @Column(name = "COD_USUARIO")
     private Integer codUsuario;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 512)
-    @Column(name = "NOMBRE")
+    
+    //@Basic(optional = false)
+    //@NotNull
+    //@Size(min = 1, max = 512)
+    @Column(name = "NOMBRE", nullable = false, length = 512)
     private String nombre;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<UsuarioDestacado> usuarioDestacadoList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Publicacion> publicacionList;
 
@@ -52,11 +56,6 @@ public class Usuario implements Serializable {
 
     public Usuario(Integer codUsuario) {
         this.codUsuario = codUsuario;
-    }
-
-    public Usuario(Integer codUsuario, String nombre) {
-        this.codUsuario = codUsuario;
-        this.nombre = nombre;
     }
 
     public Integer getCodUsuario() {

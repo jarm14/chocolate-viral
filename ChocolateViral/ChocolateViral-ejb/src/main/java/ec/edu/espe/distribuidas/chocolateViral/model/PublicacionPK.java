@@ -19,17 +19,19 @@ import javax.validation.constraints.Size;
 @Embeddable
 public class PublicacionPK implements Serializable {
 
-    @Basic(optional = false)
-    @Column(name = "COD_PUBLICACION")
-    private int codPublicacion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "COD_USUARIO")
-    private int codUsuario;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "COD_TIPO_PUBLICACION")
+    //@Basic(optional = false)
+    @Column(name = "COD_PUBLICACION", nullable = false)
+    private Integer codPublicacion;
+    
+    //@Basic(optional = false)
+    //@NotNull
+    @Column(name = "COD_USUARIO", nullable = false)
+    private Integer codUsuario;
+    
+    //@Basic(optional = false)
+    //@NotNull
+    //@Size(min = 1, max = 10)
+    @Column(name = "COD_TIPO_PUBLICACION", nullable = false, length = 10)
     private String codTipoPublicacion;
 
     public PublicacionPK() {

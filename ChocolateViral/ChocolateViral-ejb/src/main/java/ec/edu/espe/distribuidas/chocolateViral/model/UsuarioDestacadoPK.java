@@ -6,6 +6,7 @@
 package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -18,57 +19,47 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class UsuarioDestacadoPK implements Serializable {
 
-    @Basic(optional = false)
-    @Column(name = "COD_USUARIO_DESTACADO")
-    private int codUsuarioDestacado;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "COD_USUARIO")
-    private int codUsuario;
+    //@Basic(optional = false)
+    @Column(name = "COD_USUARIO_DESTACADO",nullable = false)
+    private Integer codUsuarioDestacado;
+    
+    //@Basic(optional = false)
+    //@NotNull
+    @Column(name = "COD_USUARIO", nullable = false)
+    private Integer codUsuario;
 
     public UsuarioDestacadoPK() {
     }
 
-    public UsuarioDestacadoPK(int codUsuarioDestacado, int codUsuario) {
+    public UsuarioDestacadoPK(Integer codUsuarioDestacado, Integer codUsuario) {
         this.codUsuarioDestacado = codUsuarioDestacado;
-        this.codUsuario = codUsuario;
-    }
-
-    public int getCodUsuarioDestacado() {
-        return codUsuarioDestacado;
-    }
-
-    public void setCodUsuarioDestacado(int codUsuarioDestacado) {
-        this.codUsuarioDestacado = codUsuarioDestacado;
-    }
-
-    public int getCodUsuario() {
-        return codUsuario;
-    }
-
-    public void setCodUsuario(int codUsuario) {
         this.codUsuario = codUsuario;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (int) codUsuarioDestacado;
-        hash += (int) codUsuario;
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.codUsuarioDestacado);
+        hash = 97 * hash + Objects.hashCode(this.codUsuario);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UsuarioDestacadoPK)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        UsuarioDestacadoPK other = (UsuarioDestacadoPK) object;
-        if (this.codUsuarioDestacado != other.codUsuarioDestacado) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        if (this.codUsuario != other.codUsuario) {
+        final UsuarioDestacadoPK other = (UsuarioDestacadoPK) obj;
+        if (!Objects.equals(this.codUsuarioDestacado, other.codUsuarioDestacado)) {
+            return false;
+        }
+        if (!Objects.equals(this.codUsuario, other.codUsuario)) {
             return false;
         }
         return true;
@@ -76,7 +67,9 @@ public class UsuarioDestacadoPK implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.espe.distribuidas.chocolateViral.model.UsuarioDestacadoPK[ codUsuarioDestacado=" + codUsuarioDestacado + ", codUsuario=" + codUsuario + " ]";
+        return "UsuarioDestacadoPK{" + "codUsuarioDestacado=" + codUsuarioDestacado + ", codUsuario=" + codUsuario + '}';
     }
+
+    
     
 }

@@ -30,17 +30,20 @@ import javax.validation.constraints.Size;
 public class TipoPublicacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "COD_TIPO_PUBLICACION")
+    //@Basic(optional = false)
+    //@NotNull
+    //@Size(min = 1, max = 10)
+    @Column(name = "COD_TIPO_PUBLICACION", nullable = false, length = 10)
     private String codTipoPublicacion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 512)
-    @Column(name = "DESCRIPCION")
+    
+    //@Basic(optional = false)
+    //@NotNull
+   // @Size(min = 1, max = 512)
+    @Column(name = "DESCRIPCION", nullable = false, length = 512)
     private String descripcion;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPublicacion")
     private List<Publicacion> publicacionList;
 
