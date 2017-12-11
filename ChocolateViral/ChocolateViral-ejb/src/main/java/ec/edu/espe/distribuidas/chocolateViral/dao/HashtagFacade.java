@@ -6,9 +6,12 @@
 package ec.edu.espe.distribuidas.chocolateViral.dao;
 
 import ec.edu.espe.distribuidas.chocolateViral.model.Hashtag;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,22 @@ public class HashtagFacade extends AbstractFacade<Hashtag> {
 
     public HashtagFacade() {
         super(Hashtag.class);
+    }
+    
+    public List<Hashtag> findByLocalizacion(Integer codLocalizacion)
+    {
+        Query qry = this.em.createQuery("SELECT objD, objH FROM DetallePublicacion objD, Hashtag objH "
+                + "WHERE objD.codLocalizacion = ?1 AND objH.codHashtag = objD.codHashtag");
+        qry.setParameter(1, codLocalizacion);
+        return qry.getResultList();
+    }
+    
+    public List<Hashtag> findByDiaHora(Date fecha)
+    {
+        Query qry = this.em.createQuery("SELECT objD, objH FROM DetallePublicacion objD, Hashtag objH "
+                + "WHERE objD.fecha = ?1 AND objH.codHashtag = objD.codHashtag");
+        qry.setParameter(1, fecha);
+        return qry.getResultList();
     }
     
 }

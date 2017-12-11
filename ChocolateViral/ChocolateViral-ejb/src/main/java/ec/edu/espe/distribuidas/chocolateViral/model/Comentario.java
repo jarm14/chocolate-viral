@@ -6,7 +6,6 @@
 package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,11 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,20 +22,14 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "COMENTARIO")
-@NamedQueries({
-    @NamedQuery(name = "Comentario.findAll", query = "SELECT c FROM Comentario c")})
 public class Comentario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "COD_COMENTARIO")
+    @Column(name = "COD_COMENTARIO", nullable = false)
     private Integer codComentario;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 512)
-    @Column(name = "DESCRIPCION")
+    @Column(name = "DESCRIPCION", length = 512, nullable = false)
     private String descripcion;
     @JoinColumns({
         @JoinColumn(name = "COD_PUBLICACION", referencedColumnName = "COD_PUBLICACION")

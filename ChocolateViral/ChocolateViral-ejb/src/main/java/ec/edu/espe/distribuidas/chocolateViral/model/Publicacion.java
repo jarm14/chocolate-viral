@@ -12,8 +12,6 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,8 +21,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "PUBLICACION")
-@NamedQueries({
-    @NamedQuery(name = "Publicacion.findAll", query = "SELECT p FROM Publicacion p")})
 public class Publicacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,8 +30,6 @@ public class Publicacion implements Serializable {
     private Long likes;
     @OneToMany(mappedBy = "publicacion")
     private List<Comentario> comentarioList;
-    @OneToMany(mappedBy = "publicacion")
-    private List<PublicacionDestacada> publicacionDestacadaList;
     @JoinColumn(name = "COD_USUARIO", referencedColumnName = "COD_USUARIO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usuario usuario;
@@ -78,14 +72,6 @@ public class Publicacion implements Serializable {
 
     public void setComentarioList(List<Comentario> comentarioList) {
         this.comentarioList = comentarioList;
-    }
-
-    public List<PublicacionDestacada> getPublicacionDestacadaList() {
-        return publicacionDestacadaList;
-    }
-
-    public void setPublicacionDestacadaList(List<PublicacionDestacada> publicacionDestacadaList) {
-        this.publicacionDestacadaList = publicacionDestacadaList;
     }
 
     public Usuario getUsuario() {

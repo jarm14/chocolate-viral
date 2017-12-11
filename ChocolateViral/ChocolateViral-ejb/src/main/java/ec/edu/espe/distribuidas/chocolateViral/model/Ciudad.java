@@ -6,17 +6,10 @@
 package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -24,24 +17,14 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "CIUDAD")
-@NamedQueries({
-    @NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c")})
 public class Ciudad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "COD_CIUDAD")
+    @Column(name = "COD_CIUDAD", length = 10, nullable = false)
     private String codCiudad;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 512)
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRE", length = 512, nullable = false)
     private String nombre;
-    @OneToMany(mappedBy = "codCiudad")
-    private List<Localizacion> localizacionList;
 
     public Ciudad() {
     }
@@ -69,14 +52,6 @@ public class Ciudad implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public List<Localizacion> getLocalizacionList() {
-        return localizacionList;
-    }
-
-    public void setLocalizacionList(List<Localizacion> localizacionList) {
-        this.localizacionList = localizacionList;
     }
 
     @Override

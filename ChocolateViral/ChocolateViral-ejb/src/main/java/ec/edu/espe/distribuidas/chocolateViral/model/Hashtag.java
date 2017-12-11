@@ -7,18 +7,13 @@ package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -26,20 +21,14 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "HASHTAG")
-@NamedQueries({
-    @NamedQuery(name = "Hashtag.findAll", query = "SELECT h FROM Hashtag h")})
 public class Hashtag implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "COD_HASHTAG")
+    @Column(name = "COD_HASHTAG", nullable = false)
     private Integer codHashtag;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 512)
-    @Column(name = "DESCRIPCION")
+    @Column(name = "DESCRIPCION", length = 512, nullable = false)
     private String descripcion;
     @OneToMany(mappedBy = "codHashtag")
     private List<DetallePublicacion> detallePublicacionList;

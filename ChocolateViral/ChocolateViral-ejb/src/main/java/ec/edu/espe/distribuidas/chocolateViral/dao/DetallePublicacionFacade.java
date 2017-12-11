@@ -6,9 +6,11 @@
 package ec.edu.espe.distribuidas.chocolateViral.dao;
 
 import ec.edu.espe.distribuidas.chocolateViral.model.DetallePublicacion;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +29,12 @@ public class DetallePublicacionFacade extends AbstractFacade<DetallePublicacion>
 
     public DetallePublicacionFacade() {
         super(DetallePublicacion.class);
+    }
+
+    public List<DetallePublicacion> findByHashtag(Integer codHashtag) {
+        Query qry = this.em.createQuery("SELECT obj FROM DetallePublicacion obj WHERE obj.codHashtag = ?1");
+        qry.setParameter(1, codHashtag);
+        return qry.getResultList();
     }
 
 }

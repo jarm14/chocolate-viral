@@ -8,7 +8,6 @@ package ec.edu.espe.distribuidas.chocolateViral.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,11 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -28,24 +24,16 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "LOCALIZACION")
-@NamedQueries({
-    @NamedQuery(name = "Localizacion.findAll", query = "SELECT l FROM Localizacion l")})
 public class Localizacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "COD_LOCALIZACION")
+    @Column(name = "COD_LOCALIZACION", nullable = false)
     private Integer codLocalizacion;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "LONGITUD")
+    @Column(name = "LONGITUD", nullable = false)
     private BigDecimal longitud;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "LATITUD")
+    @Column(name = "LATITUD", nullable = false)
     private BigDecimal latitud;
     @JoinColumn(name = "COD_CIUDAD", referencedColumnName = "COD_CIUDAD")
     @ManyToOne

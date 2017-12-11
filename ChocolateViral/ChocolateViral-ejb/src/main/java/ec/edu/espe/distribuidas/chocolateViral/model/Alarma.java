@@ -6,17 +6,12 @@
 package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -24,16 +19,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "ALARMA")
-@NamedQueries({
-    @NamedQuery(name = "Alarma.findAll", query = "SELECT a FROM Alarma a")})
 public class Alarma implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected AlarmaPK alarmaPK;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 512)
     @Column(name = "DESCRIPCION")
     private String descripcion;
     @JoinColumn(name = "COD_PUBLICACION_DESTACADA", referencedColumnName = "COD_PUBLICACION_DESTACADA", insertable = false, updatable = false)

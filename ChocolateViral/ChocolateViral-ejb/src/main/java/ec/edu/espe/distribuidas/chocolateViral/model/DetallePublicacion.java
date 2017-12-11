@@ -7,7 +7,6 @@ package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,13 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -30,23 +25,17 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "DETALLE_PUBLICACION")
-@NamedQueries({
-    @NamedQuery(name = "DetallePublicacion.findAll", query = "SELECT d FROM DetallePublicacion d")})
 public class DetallePublicacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "COD_DETALLE_PUBLICACION")
+    @Column(name = "COD_DETALLE_PUBLICACION", nullable = false)
     private Integer codDetallePublicacion;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "FECHA")
+    @Column(name = "FECHA", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date fecha;
-    @Size(max = 512)
-    @Column(name = "DESCRIPCION")
+    @Column(name = "DESCRIPCION", length = 512)
     private String descripcion;
     @JoinColumn(name = "COD_HASHTAG", referencedColumnName = "COD_HASHTAG")
     @ManyToOne
