@@ -8,19 +8,14 @@ package ec.edu.espe.distribuidas.chocolateViral.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -28,8 +23,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "REPORTE")
-@NamedQueries({
-    @NamedQuery(name = "Reporte.findAll", query = "SELECT r FROM Reporte r")})
 public class Reporte implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,14 +30,9 @@ public class Reporte implements Serializable {
     @EmbeddedId
     protected ReportePK reportePK;
     
-    //@Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 512)
     @Column(name = "DESCRIPCION", nullable = false, length = 512)
     private String descripcion;
     
-    //@Basic(optional = false)
-    //@NotNull
     @Temporal(TemporalType.DATE)
     @Column(name = "FECHA", nullable = false)
     private Date fecha;

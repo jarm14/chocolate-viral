@@ -6,18 +6,10 @@
 package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -25,28 +17,17 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "TIPO_PUBLICACION")
-@NamedQueries({
-    @NamedQuery(name = "TipoPublicacion.findAll", query = "SELECT t FROM TipoPublicacion t")})
 public class TipoPublicacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     @Id
-    //@Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 10)
     @Column(name = "COD_TIPO_PUBLICACION", nullable = false, length = 10)
     private String codTipoPublicacion;
     
-    //@Basic(optional = false)
-    //@NotNull
-   // @Size(min = 1, max = 512)
     @Column(name = "DESCRIPCION", nullable = false, length = 512)
     private String descripcion;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoPublicacion")
-    private List<Publicacion> publicacionList;
-
     public TipoPublicacion() {
     }
 
@@ -73,14 +54,6 @@ public class TipoPublicacion implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public List<Publicacion> getPublicacionList() {
-        return publicacionList;
-    }
-
-    public void setPublicacionList(List<Publicacion> publicacionList) {
-        this.publicacionList = publicacionList;
     }
 
     @Override

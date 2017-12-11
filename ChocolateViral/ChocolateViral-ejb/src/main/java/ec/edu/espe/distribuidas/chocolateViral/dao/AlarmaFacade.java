@@ -28,6 +28,4 @@ public class AlarmaFacade extends AbstractFacade<Alarma> {
     public AlarmaFacade() {
         super(Alarma.class);
     }
-    
-    //public List    
 }

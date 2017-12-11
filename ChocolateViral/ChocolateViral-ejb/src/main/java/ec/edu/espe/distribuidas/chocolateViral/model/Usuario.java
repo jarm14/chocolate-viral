@@ -7,19 +7,14 @@ package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 /**
  *
@@ -27,26 +22,17 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "USUARIO")
-@NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COD_USUARIO")
     private Integer codUsuario;
     
-    //@Basic(optional = false)
-    //@NotNull
-    //@Size(min = 1, max = 512)
     @Column(name = "NOMBRE", nullable = false, length = 512)
     private String nombre;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<UsuarioDestacado> usuarioDestacadoList;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Publicacion> publicacionList;
@@ -72,14 +58,6 @@ public class Usuario implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public List<UsuarioDestacado> getUsuarioDestacadoList() {
-        return usuarioDestacadoList;
-    }
-
-    public void setUsuarioDestacadoList(List<UsuarioDestacado> usuarioDestacadoList) {
-        this.usuarioDestacadoList = usuarioDestacadoList;
     }
 
     public List<Publicacion> getPublicacionList() {

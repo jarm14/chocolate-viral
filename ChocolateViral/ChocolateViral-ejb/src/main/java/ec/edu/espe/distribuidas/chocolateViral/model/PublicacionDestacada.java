@@ -8,7 +8,6 @@ package ec.edu.espe.distribuidas.chocolateViral.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,11 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -30,20 +26,19 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "PUBLICACION_DESTACADA")
-@NamedQueries({
-    @NamedQuery(name = "PublicacionDestacada.findAll", query = "SELECT p FROM PublicacionDestacada p")})
 public class PublicacionDestacada implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COD_PUBLICACION_DESTACADA")
     private Integer codPublicacionDestacada;
 
-    @Column(name = "NUMERO_LIKES", nullable = false, precision = 15, scale = 0)
+    @Column(name = "NUMERO_LIKES", nullable = false, length = 15)
     private BigDecimal numeroLikes;
    
-    @Column(name = "NUMERO_COMENTARIOS", nullable = false, precision = 15, scale = 0)
+    @Column(name = "NUMERO_COMENTARIOS", nullable = false, length = 15)
     private BigDecimal numeroComentarios;
     
 

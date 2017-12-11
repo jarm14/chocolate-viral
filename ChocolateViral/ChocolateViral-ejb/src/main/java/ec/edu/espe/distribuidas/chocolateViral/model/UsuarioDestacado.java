@@ -7,16 +7,12 @@ package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -24,8 +20,6 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "USUARIO_DESTACADO")
-@NamedQueries({
-    @NamedQuery(name = "UsuarioDestacado.findAll", query = "SELECT u FROM UsuarioDestacado u")})
 public class UsuarioDestacado implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,9 +27,7 @@ public class UsuarioDestacado implements Serializable {
     @EmbeddedId
     protected UsuarioDestacadoPK usuarioDestacadoPK;
     
-    //@Basic(optional = false)
-    //@NotNull
-    @Column(name = "NUMERO_SEGUIDORES", nullable = false, precision = 10, scale = 0)
+    @Column(name = "NUMERO_SEGUIDORES", nullable = false, length = 10)
     private BigDecimal numeroSeguidores;
     
     @ManyToOne

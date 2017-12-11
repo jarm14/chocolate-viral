@@ -6,9 +6,11 @@
 package ec.edu.espe.distribuidas.chocolateViral.dao;
 
 import ec.edu.espe.distribuidas.chocolateViral.model.UsuarioDestacado;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,5 +30,9 @@ public class UsuarioDestacadoFacade extends AbstractFacade<UsuarioDestacado> {
     public UsuarioDestacadoFacade() {
         super(UsuarioDestacado.class);
     }
-    
+
+    public List<UsuarioDestacado> findTop10Usuario() {
+        Query qry = this.em.createQuery("SELECT obj FROM UsuarioDestacado obj ORDER BY obj.numeroSeguidores LIMIT 10");
+        return qry.getResultList();
+    }
 }

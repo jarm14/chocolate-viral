@@ -7,10 +7,8 @@ package ec.edu.espe.distribuidas.chocolateViral.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -19,11 +17,8 @@ import javax.validation.constraints.NotNull;
 @Embeddable
 public class ReportePK implements Serializable {
 
-    //@Basic(optional = false)
     @Column(name = "COD_REPORTE", nullable = false)
     private Integer codReporte;
-    //@Basic(optional = false)
-    //@NotNull
     @Column(name = "COD_PUBLICACION_DESTACADA", nullable = false)
     private Integer codPublicacionDestacada;
 
